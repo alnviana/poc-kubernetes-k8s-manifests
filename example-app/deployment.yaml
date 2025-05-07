@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-app
+  template:
+    metadata:
+      labels:
+        app: example-app
+    spec:
+      containers:
+        - name: example-app
+          image: >-
+            mendhak/http-https-echo@sha256:43bdfe52abc5baed00706337efe26825c86360c6b9b74659a72a9aa2fca8bd55
+          resources:
+            requests:
+              memory: 32Mi
+              # cpu: 100m
+            limits:
+              memory: 64Mi
+              # cpu: 100m
+          ports:
+            - containerPort: 8080
+...
