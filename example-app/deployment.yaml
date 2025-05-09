@@ -17,7 +17,7 @@ spec:
       serviceAccountName: prd-example-app
       containers:
         - name: example-app
-          image: mendhak/http-https-echo@sha256:43bdfe52abc5baed00706337efe26825c86360c6b9b74659a72a9aa2fca8bd55
+          image: $IMAGE:$IMAGE_TAG
           # envFrom:
           #   - secretRef:
           #       name: example-app-db-secret
