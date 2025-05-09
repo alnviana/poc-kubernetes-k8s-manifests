@@ -34,6 +34,13 @@ spec:
             - name: example-app-gke-spc-volume
               mountPath: "/mnt/example-app-gke-spc"
               readOnly: true
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy@sha256:c5a6a06ce9038293937368713fbff78f924acbc2bf7e82d822ab9bbc4e49ec72
+          command:
+            - "/cloud-sql-proxy"
+            - "poc-kubernetes-459003:us-central1:prd-db-example-app"
+          securityContext:
+            runAsNonRoot: true
       volumes:
         - name: example-app-gke-spc-volume
           csi:
