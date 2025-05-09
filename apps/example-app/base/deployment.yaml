@@ -17,7 +17,7 @@ spec:
       serviceAccountName: prd-example-app
       containers:
         - name: example-app
-          image: us-central1-docker.pkg.dev/poc-kubernetes-459003/prd-images-example-app/default:latest
+          image: us-central1-docker.pkg.dev/poc-kubernetes-459003/prd-images-example-app/default:test
           # envFrom:
           #   - secretRef:
           #       name: example-app-db-secret
