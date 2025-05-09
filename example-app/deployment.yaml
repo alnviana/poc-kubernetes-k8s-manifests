@@ -60,4 +60,3 @@ spec:
                       values:
                         - example-app
                 topologyKey: "kubernetes.io/hostname"
-...
