@@ -13,10 +13,13 @@ spec:
       labels:
         app: example-app
     spec:
+      serviceAccountName: prd-example-app
       containers:
         - name: example-app
-          image: >-
-            mendhak/http-https-echo@sha256:43bdfe52abc5baed00706337efe26825c86360c6b9b74659a72a9aa2fca8bd55
+          image: mendhak/http-https-echo@sha256:43bdfe52abc5baed00706337efe26825c86360c6b9b74659a72a9aa2fca8bd55
+          # envFrom:
+          #   - secretRef:
+          #       name: example-app-db-secret
           resources:
             requests:
               memory: 32Mi
@@ -26,4 +29,15 @@ spec:
               # cpu: 100m
           ports:
             - containerPort: 8080
+          volumeMounts:
+            - name: example-app-gke-spc-volume
+              mountPath: "/mnt/example-app-gke-spc"
+              readOnly: true
+      volumes:
+        - name: example-app-gke-spc-volume
+          csi:
+            driver: secrets-store-gke.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "example-app-gke-spc"
 ...
