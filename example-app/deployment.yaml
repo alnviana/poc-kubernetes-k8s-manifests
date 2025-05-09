@@ -40,4 +40,16 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: "example-app-gke-spc"
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - example-app
+                topologyKey: "kubernetes.io/hostname"
 ...
